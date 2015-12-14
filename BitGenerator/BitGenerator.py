@@ -50,3 +50,10 @@ t = Poly([1, 0, 0, 1, 1])
 s01 = lfsr(t, [1, 0, 0, 0], 15)
 print(t)
 print("s01 =", s01, "\n")
+
+"""
+	TODO
+		Make this return a array of characters instead of numbers because mod expects that?
+		List of maximum length polynomials (can use poly class) -- maybe can generate them
+		Find out / figure out how many bits to generate each time
+"""
