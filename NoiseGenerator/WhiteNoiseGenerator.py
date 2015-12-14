@@ -1,5 +1,5 @@
-from math import sqrt, log, sin, pi, cos
-import numpy as np
+from numpy import random, sqrt, log, sin, cos, pi
+from pylab import show, hist, subplot, figure
 
 
 # noise = np.random.normal(0, 0.5, 100)
@@ -9,53 +9,47 @@ import numpy as np
 
 # print(noise)
 
-# BOX MULLER
-def generate_normal(mu, sigma):
-    u = np.random.random()
-    v = np.random.random()
+def generateWhiteNoise(numBits, mean, sd):
+    u1 = random.random(numBits)
+    v1 = random.random(numBits)
 
-    z1 = sqrt(-2 * log(u)) * sin(2 * pi * v)
-    z2 = sqrt(-2 * log(u)) * cos(2 * pi * v)
+    z0, z1 = box_muller(u1, v1)
 
-    x1 = mu + z1 * sigma
-    x2 = mu + z2 * sigma
+    x1 = mean + z0 * sd
+    x2 = mean + z1 * sd
 
-    return [x1, x2]
+    return x1, x2
 
 
-seq2 = [generate_normal(0, 0.5) for i in range(2 ** 8 + 16)]
+def box_muller(u1, v1):
+    z0 = sqrt(-2 * log(u1)) * cos(2 * pi * v1)
+    z1 = sqrt(-2 * log(u1)) * sin(2 * pi * v1)
+    return z0, z1
 
+
+#Test
+seq2 = generateWhiteNoise(2**6, 0, 0.5)
 print(seq2)
 
-from numpy import random, sqrt, log, sin, cos, pi
-from pylab import show, hist, subplot, figure
-
-
-# transformation function
-def gaussian(u1, u2):
-    z1 = sqrt(-2 * log(u1)) * cos(2 * pi * u2)
-    z2 = sqrt(-2 * log(u1)) * sin(2 * pi * u2)
-
-    z1 = z1 * 0.01
-    z2 = z2 * 0.01
-    return z1, z2
-
-
-# uniformly distributed values between 0 and 1
+#Test - see what distribution looks like
 u1 = random.rand(1000)
 u2 = random.rand(1000)
-
 # run the transformation
-z1, z2 = gaussian(u1, u2)
+z1, z2 = box_muller(u1, u2)
 
-# plotting the values before and after the transformation
 figure()
-subplot(221)  # the first row of graphs
-hist(u1)  # contains the histograms of u1 and u2
+subplot(221)
+hist(u1)
 subplot(222)
 hist(u2)
-subplot(223)  # the second contains
-hist(z1)  # the histograms of z1 and z2
+subplot(223)
+hist(z1)
 subplot(224)
 hist(z2)
 show()
+
+"""
+    TODO
+        Take values from mod (Point class) and add noise (above is generating two channels of noise)
+        Given SNR work out sd of noise
+"""
