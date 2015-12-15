@@ -1,4 +1,4 @@
 # PythonBitGeneratorNoise
 Group 1 - Python 
 
-Bit generator amnd Noise generator
+Bit generator and Noise generator
