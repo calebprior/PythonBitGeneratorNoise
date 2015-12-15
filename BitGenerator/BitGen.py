@@ -1,4 +1,13 @@
 
+def generateBitSequence(numBits):
+    poly = Poly([1, 0, 0, 1, 1])
+    startState = [1, 0, 0, 0]
+
+    result = lfsr(poly, startState, numBits)
+    asChars = list(map(str, result))
+
+    return asChars
+
 def lfsr(poly, startState, numBits):
     """
         Outputs a sequence with N elements. Each element is
@@ -46,14 +55,10 @@ class Poly(list):
         L.reverse()
         return "+".join(L) + "+ " + str(self.__getitem__(self.__len__() - 1))
 
-t = Poly([1, 0, 0, 1, 1])
-s01 = lfsr(t, [1, 0, 0, 0], 15)
-print(t)
-print("s01 =", s01, "\n")
+
 
 """
 	TODO
-		Make this return a array of characters instead of numbers because mod expects that?
 		List of maximum length polynomials (can use poly class) -- maybe can generate them
 		Find out / figure out how many bits to generate each time
 """

@@ -1,13 +1,21 @@
 from numpy import random, sqrt, log, sin, cos, pi
 from pylab import show, hist, subplot, figure
 
+import point
 
-# noise = np.random.normal(0, 0.5, 100)
-# 0 is the mean of the normal distribution you are choosing from
-# 0.5 is the standard deviation of the normal distribution
-# 100 is the number of elements you get in array noise
+def addWhiteNoise(pointList):
+    numBits = len(pointList)
+    mean = 0
+    sd = 0.5
+    noise = generateWhiteNoise(numBits, mean, sd)
 
-# print(noise)
+    resList = []
+    for count, pt in enumerate(pointList):
+        newpoint = point.Point(pt.i + noise[0][count], pt.q + noise[1][count])
+        resList.append(newpoint)
+
+    return resList
+
 
 def generateWhiteNoise(numBits, mean, sd):
     u1 = random.random(numBits)
@@ -26,7 +34,7 @@ def box_muller(u1, v1):
     z1 = sqrt(-2 * log(u1)) * sin(2 * pi * v1)
     return z0, z1
 
-
+"""
 #Test
 seq2 = generateWhiteNoise(2**6, 0, 0.5)
 print(seq2)
@@ -47,9 +55,9 @@ hist(z1)
 subplot(224)
 hist(z2)
 show()
-
+"""
 """
     TODO
-        Take values from mod (Point class) and add noise (above is generating two channels of noise)
         Given SNR work out sd of noise
 """
+
