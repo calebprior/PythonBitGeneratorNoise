@@ -3,10 +3,15 @@ from pylab import show, hist, subplot, figure
 
 import point
 
-def addWhiteNoise(pointList):
+def sdForSnrValue(SNR):
+    sd = sqrt((1 / SNR))
+
+    return sd
+
+def addWhiteNoise(pointList, SNR):
     numBits = len(pointList)
     mean = 0
-    sd = 0.5
+    sd = sdForSnrValue(SNR)
     noise = generateWhiteNoise(numBits, mean, sd)
 
     resList = []
