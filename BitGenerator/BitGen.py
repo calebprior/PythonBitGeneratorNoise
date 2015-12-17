@@ -40,3 +40,6 @@ def lfsr(poly, startState, numBits):
     L = len(s)
 
     return [s[i % L] for i in range(numBits)]
+
+
+print(generateBitSequence(10, 1))

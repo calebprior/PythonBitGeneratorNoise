@@ -24,7 +24,6 @@ def addWhiteNoise(pointList, SNR):
 
     return resList
 
-
 def generateWhiteNoise(numBits, mean, sd):
     u1 = random.random(numBits)
     v1 = random.random(numBits)
