@@ -1,10 +1,14 @@
+from blaze.expr.math import sqrt
 from numpy import random, sqrt, log, sin, cos, pi
 from pylab import show, hist, subplot, figure
+from math import exp
 
 import point
 
-def sdForSnrValue(SNR):
-    sd = (1 / sqrt(SNR))
+def sdForSnrValue(SNRdb):
+    SNRlin = 10*exp(SNRdb / 10)
+    variance = 1 / sqrt(SNRlin)
+    sd = sqrt(variance)
     return sd
 
 def addWhiteNoise(pointList, SNR):
