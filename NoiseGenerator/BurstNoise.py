@@ -13,7 +13,7 @@ def addBurstNoise(pointList, freqValue, duration):
 #    noise = generateBurstNoise(numBits, mean, sd)
 
     resList = []
-    for i in enumerate(pointList):
+    for i, pt in enumerate(pointList):
         randomNumber = random.random(numBits)
         if(randomNumber > 0.66):
             pt.i = 1.0
@@ -32,6 +32,7 @@ def addBurstNoise(pointList, freqValue, duration):
 def generateBurstNoise(numBits, mean, sd):
 # A count of 50000 is about 7 seconds of noise burst...
     count=0
+    noiselevel=50
     while count<50000:
         # Generate a random byte value.
         value=random.random(numBits)*noiselevel
