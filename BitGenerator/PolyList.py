@@ -44,4 +44,4 @@ def listPolynomial():
 
 def printMaxPolynomials(listOfMaxPolynomials):
     for i in len(listOfMaxPolynomials):
-        print(listOfMaxPolynomials[i])
+        print(listOfMaxPolynomials[i] + "\n")
