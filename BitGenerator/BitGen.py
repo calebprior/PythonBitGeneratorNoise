@@ -1,5 +1,6 @@
 
 import Poly
+import PolyList
 
 def generateBitSequence(numBits):
     poly = Poly.Poly([1, 0, 0, 1, 1])
