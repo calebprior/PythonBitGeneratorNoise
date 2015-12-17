@@ -1,10 +1,10 @@
 
-import Poly
 import PolyList
 
-def generateBitSequence(numBits):
-    poly = Poly.Poly([1, 0, 0, 1, 1])
-    startState = [1, 0, 0, 0]
+def generateBitSequence(numBits, polyNum):
+    poly = PolyList.maximumLengthPolys[polyNum]
+    # unsure about start state-- all ones for the time being
+    startState = [1 for i in range(len(poly) - 1)]
 
     result = lfsr(poly, startState, numBits)
     asChars = list(map(str, result))
