@@ -4,8 +4,7 @@ from pylab import show, hist, subplot, figure
 import point
 
 def sdForSnrValue(SNR):
-    sd = sqrt((1 / SNR))
-
+    sd = (1 / sqrt(SNR))
     return sd
 
 def addWhiteNoise(pointList, SNR):
@@ -39,6 +38,7 @@ def box_muller(u1, v1):
     z1 = sqrt(-2 * log(u1)) * sin(2 * pi * v1)
     return z0, z1
 
+"""
 #Test
 seq2 = generateWhiteNoise(2**6, 0, 0.5)
 print(seq2)
@@ -59,9 +59,5 @@ hist(z1)
 subplot(224)
 hist(z2)
 show()
-
-"""
-    TODO
-        Given SNR work out sd of noise
 """
 

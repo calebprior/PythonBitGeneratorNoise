@@ -40,9 +40,3 @@ def lfsr(poly, startState, numBits):
     L = len(s)
 
     return [s[i % L] for i in range(numBits)]
-
-"""
-	TODO
-		List of maximum length polynomials (can use poly class) -- maybe can generate them
-		Find out / figure out how many bits to generate each time
-"""
