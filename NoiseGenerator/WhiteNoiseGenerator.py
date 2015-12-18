@@ -1,15 +1,16 @@
-from blaze.expr.math import sqrt
 from numpy import random, sqrt, log, sin, cos, pi
-from pylab import show, hist, subplot, figure
-from math import exp
-
 import point
 
 def sdForSnrValue(SNRdb):
-    SNRlin = 10*exp(SNRdb / 10)
-    variance = 1 / sqrt(SNRlin)
+    SNRlin = 10**(SNRdb / 10)
+    variance = 1.0 / sqrt(SNRlin)
     sd = sqrt(variance)
     return sd
+
+print(sdForSnrValue(10))
+print(sdForSnrValue(4))
+print(sdForSnrValue(6))
+print(sdForSnrValue(40))
 
 def addWhiteNoise(pointList, SNR):
     numBits = len(pointList)
@@ -40,27 +41,4 @@ def box_muller(u1, v1):
     z0 = sqrt(-2 * log(u1)) * cos(2 * pi * v1)
     z1 = sqrt(-2 * log(u1)) * sin(2 * pi * v1)
     return z0, z1
-
-"""
-#Test
-seq2 = generateWhiteNoise(2**6, 0, 0.5)
-print(seq2)
-
-#Test - see what distribution looks like
-u1 = random.rand(1000)
-u2 = random.rand(1000)
-# run the transformation
-z1, z2 = box_muller(u1, u2)
-
-figure()
-subplot(221)
-hist(u1)
-subplot(222)
-hist(u2)
-subplot(223)
-hist(z1)
-subplot(224)
-hist(z2)
-show()
-"""
 
